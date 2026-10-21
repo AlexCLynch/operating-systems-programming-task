@@ -33,7 +33,7 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
     }
     while (r <= rightend){
         B[i] = A[r];
-        l++;
+        r++;
         i++;
     }
 
@@ -57,14 +57,15 @@ void * parallel_mergesort(void *arg){
 
     // calculate midpoint and use merge function
     int mid = (args->left + args->right) / 2;
-    merge(args->left, mid, mid + 1, args->right);
-    merge(args->left, mid, mid + 1, args->right);
         return NULL;
 }
 
 /* we build the argument for the parallel_mergesort function. */
 struct argument * buildArgs(int left, int right, int level){
     struct argument * arg = (struct argument *) malloc(sizeof(struct argument));
+    arg->left = left;
+    arg->right = right;
+    arg->level = level;
 	return arg;
 }
 
