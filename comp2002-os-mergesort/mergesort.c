@@ -48,6 +48,20 @@ void merge(int leftstart, int leftend, int rightstart, int rightend){
 
 /* this function will be called by parallel_mergesort() as its base case. */
 void my_mergesort(int left, int right){
+	// base case: 0 or 1 element
+    if (left >= right){
+        return;
+    }
+
+    // find midpoint
+    int mid = (left + right) / 2;
+
+    // recursively sort both halves
+    my_mergesort(left, mid); 
+    my_mergesort(mid + 1, right);
+
+    // merge the sorted arrays
+    merge(left, mid, mid + 1, right);
 }
 
 /* this function will be called by the testing program. */
