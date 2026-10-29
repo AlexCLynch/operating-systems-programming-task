@@ -69,9 +69,41 @@ void * parallel_mergesort(void *arg){
     // specify the input arg uses arguement structure
     struct argument *args = arg;
 
-    // calculate midpoint and use merge function
-    int mid = (args->left + args->right) / 2;
+    // base case: 0 or 1 element
+    if (args->left >= args->right){
         return NULL;
+    }
+
+    // cutoff for threads reached, use my_mergesort to sort
+    if (args->level >= cutoff){
+        my_mergesort(args->left, args->right);
+        return NULL;
+    }
+
+    // calculate midpoint
+    int mid = (args->left + args->right) / 2;
+
+    // build child arguments
+    struct argument *leftArg  = buildArgs(args->left, mid, args->level + 1);
+    struct argument *rightArg = buildArgs(mid + 1, args->right, args->level + 1);
+
+    // create child threads
+    pthread_t t1, t2;
+    pthread_create(&t1, NULL, parallel_mergesort, leftArg);
+    pthread_create(&t2, NULL, parallel_mergesort, rightArg);
+
+    // wait for both threads to finish
+    pthread_join(t1, NULL);
+    pthread_join(t2, NULL);
+
+    // merge sorted halves
+    merge(args->left, mid, mid + 1, args->right);
+
+    // free child arguments from memory 
+    free(leftArg);
+    free(rightArg);
+
+    return NULL;
 }
 
 /* we build the argument for the parallel_mergesort function. */
