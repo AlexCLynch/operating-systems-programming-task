@@ -2,15 +2,12 @@ README.template
 
 ## Project Number/Title 
 
-* Authors: Your Name, and your group members’ names
-* Group name: Your Group Name
+* Authors: Alexander Lynch, Samuel Siew
+* Group name: Group-98
 
 ## Overview
 
-Concisely explain what the program does. If this exceeds a couple of
-sentences, you're going too far. Generally, you should be pulling this
-right from the project specification. We don't want you to just cut and
-paste, but paraphrase what is stated in the project specification.
+The program implements parallel merge sort in C using threads. It sorts a randomly generated array of integers by recursively splitting the array into two and creating a new thread for each half. The number of levels created is determined by the user input, as well as the number of elements to be sorted and the seed to be used for the random number generator. 
 
 ## Manifest
 
@@ -50,8 +47,11 @@ finally "clicked" for you in the process of working on this project? How well
 did the development and testing process go for you?
 
 ## Sources Used
+GeeksforGeeks, 2025. Thread Management Functions in C. [Online] 
+Available at: https://www.geeksforgeeks.org/c/thread-functions-in-c-c/
+[Accessed 29 October 2026].
+GeeksforGeeks, 2026. Merge Sort. [Online] 
+Available at: https://www.geeksforgeeks.org/dsa/merge-sort/
+[Accessed 27 October 2026].
 
-If you used any sources outside of the textbook, you should list them here. 
-If you looked something up on stackoverflow.com or you use help from AI, and 
-fail to cite it in this section, it will be considered plagiarism and dealt 
-with accordingly. So be safe CITE!
+
