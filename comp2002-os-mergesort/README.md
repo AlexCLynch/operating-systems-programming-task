@@ -27,8 +27,18 @@ Delete the generated files by using the "make clean" command.
 
 ## Features and usage
 
-Summarise the main features of your program. It is also appropriate to
-instruct the user how to use your program.
+This program generates an array of random integers from a supplied seed, and sorts 
+them using a multi-threaded merge sort algorithm. The program has three inputs. 
+'input size' specifies the number of elements in the array and must be at least 2. 
+'cutoff level' specifies how many levels create new threads. 'seed' specifies the 
+random seed used to generate the elements of the array. Once the program has 
+finished it will ouput the ellapsed sorting time.
+
+Run it with:
+
+```sh
+./test-mergesort <input size> <cutoff level> <seed>
+```
 
 ## Testing
 
@@ -63,7 +73,7 @@ seed.
 ```
 
 The tests above also assessed the effectiveness of different cuttoffs. The
-results were respectively.
+results were respectively:
 
 ```sh
 Sorting 100000000 elements took 15.15 seconds.
