@@ -98,9 +98,10 @@ Segmentation fault when sorting ~1,100,000,000 elements, likely due to integer o
 
 ## Reflection and Self Assessment
 
-Implementing standard mergesort in the my_mergesort function did not take much additional research, while implementing parallel_mergesort required additional readings on top of the textbook chapters on threads. 
+Implementing standard mergesort in the my_mergesort function did not take much additional research, while implementing parallel_mergesort required additional readings on top of the textbook chapters on threads.
+Using arguments as a function input and ouput was difficult and unfamiliar at first, but the textbooks example's helped a lot with my understanding. 
 A small issue when testing my_mergesort was missing parenthesis when calculating the midpoint, causing a segmentation fault on arrays larger than n = 2. 
-The second issue faced was a return NULL in parallel_mergesort at the start of the function, causing the function to exit early, with the testing reporting that sorting had failed on all tests run. 
+The second issue faced was a return NULL in parallel_mergesort at the start of the function, causing the function to exit early, with the testing reporting that sorting had failed on all tests run.
 
 ## Sources Used
 GeeksforGeeks, 2025. Thread Management Functions in C. [Online] 
