@@ -7,19 +7,23 @@ README.template
 
 ## Overview
 
-The program implements parallel merge sort in C using threads. It sorts a randomly generated array of integers by recursively splitting the array into two and creating a new thread for each half. The number of levels created is determined by the user input, as well as the number of elements to be sorted and the seed to be used for the random number generator. 
+The program implements parallel merge sort in C using threads. It sorts a 
+randomly generated array of integers by recursively splitting the array 
+into two and creating a new thread for each half. The number of levels 
+created is determined by the user input, as well as the number of elements to 
+be sorted and the seed to be used for the random number generator. 
 
 ## Manifest
 
-A listing of source files and other non-generated files, and a brief
-(one-line) explanation of the purpose of each file.
+mergesort.h: Public declarations, shared data, and the thread argument structure used by the merge-sort implementation.
+mergesort.c: Parallel merge sort, sequential merge sort, merging logic, thread argument creation, and memory management.
+test-mergesort.c: Command-line test and benchmark driver that generates input, runs the sort, checks the result, and reports elapsed time.
+Makefile: Build and clean targets for the test executable.
 
 ## Building the project
 
-This section should tell the user how to build your code.  If you are
-delivering a library, where does it need to be installed, or how do you use
-it? Is this an executable, if so, how can a user get up to speed as fast as
-possible?
+Build the code from this directory by using the "make" command.
+Delete the generated files by using the "make clean" command.
 
 ## Features and usage
 
@@ -28,13 +32,57 @@ instruct the user how to use your program.
 
 ## Testing
 
-This section should detail how you tested your code. Simply stating "I ran
-it a few times and it seems to work" is not sufficient. Your testing needs
-to be detailed here.
+The test driver checks the complete output array for nondecreasing order and
+returns a failure status if sorting is unsuccessful. The project was tested by
+building with `make` and running the executable with:
+
+```sh
+./test-mergesort 2 0 0
+./test-mergesort 5 0 0
+./test-mergesort 10 1 0
+./test-mergesort 11 1 0
+./test-mergesort 100000 5 0
+./test-mergesort 100000 5 123
+./test-mergesort 4 5 0
+```
+
+These cases cover the smallest valid input, an odd number of elements,
+using multiple threads, inputs smaller than the cutoff, and using a different
+seed.
+
+```sh
+./test-mergesort 100000000 0 1234
+./test-mergesort 100000000 1 1234
+./test-mergesort 100000000 2 1234
+./test-mergesort 100000000 3 1234
+./test-mergesort 100000000 4 1234
+./test-mergesort 100000000 5 1234
+./test-mergesort 100000000 6 1234
+./test-mergesort 100000000 7 1234
+./test-mergesort 100000000 8 1234
+```
+
+The tests above also assessed the effectiveness of different cuttoffs. The
+results were respectively.
+
+```sh
+Sorting 100000000 elements took 15.15 seconds.
+Sorting 100000000 elements took 7.92 seconds.
+Sorting 100000000 elements took 4.65 seconds.
+Sorting 100000000 elements took 2.83 seconds.
+Sorting 100000000 elements took 2.15 seconds.
+Sorting 100000000 elements took 2.13 seconds.
+Sorting 100000000 elements took 2.21 seconds.
+Sorting 100000000 elements took 2.21 seconds.
+Sorting 100000000 elements took 2.22 seconds.
+```
+
+Note that results may vary depending on system specifications.
 
 ## Known Bugs
 
-List known bugs that you weren't able to fix (or ran out of time to fix).
+The command-line arguments are parsed with `atoi`, so malformed or 
+out-of-range numeric arguments are not reported separately.
 
 ## Reflection and Self Assessment
 
